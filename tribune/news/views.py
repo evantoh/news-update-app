@@ -35,12 +35,14 @@ def past_days_news(request,past_date):
 
  
 def search_results(request):
-    if 'articles' in request.GET and request.GET["articles"]:
-        search_term=request.GET.get("articles")
-        searched_articles=Article.search_by_title(search_term)
+    
+    if 'article' in request.GET and request.GET["article"]:
+        search_term = request.GET.get("article")
+        searched_articles = Article.search_by_title(search_term)
+        message = f"{search_term}"
 
-        message=f"{search_term}"
-        return render(request,'all_news/search.html',{"message":message,"articles":searched_articles})
+        return render(request, 'all_news/search.html',{"message":message,"articles": searched_articles})
+
     else:
-        message="you haven't searched for any term"
-        return render(request,'all_news/search.html',{"message":message})
+        message = "You haven't searched for any term"
+        return render(request, 'all_news/search.html',{"message":message})
