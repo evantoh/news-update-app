@@ -1,23 +1,3 @@
-def search_results(request):
-
-    if 'article' in request.GET and request.GET["article"]:
-        search_term = request.GET.get("article")
-        searched_articles = Article.search_by_title(search_term)
-        message = f"{search_term}"
-
-        return render(request, 'all-news/search.html',{"message":message,"articles": searched_articles})
-
-    else:
-        message = "You haven't searched for any term"
-        return render(request, 'all-news/search.html',{"message":message})
-We create the search_results view function. First we check if the article query exists in our request.GET object and then we then check if it has a value. We then get the search_term using the get method called on the request.GET object.
-
-Next we call the search_by_title class method and pass in the user input. We then render a HTML template and pass in the list of articles found and the search_term.
-
-If either of our conditions are not met we render the template passing in a helpful error message.
-
-templates/all-news/search.html
-
 {%extends 'all_news/base.html'%} 
 {% block content %}
 <div class="container">

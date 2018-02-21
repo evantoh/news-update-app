@@ -4,9 +4,10 @@
 {% block content %} 
 {{ block.super}}
 
-<div class="container">
+<div
 
-  <!-- Looping through news   -->
+
+-->
   {% for news_item in news %}
 
   <div class="row">
@@ -18,7 +19,7 @@
     </div>
     <!--Display news Article images  -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <img src="{{news_item.article_image.url}}" class="img-responsive" alt="Image">
+      <img src="{{news_item.article_image.url}}" class="img-circle" alt="Cinque Terre" width="304" height="236">
     </div>
 
   </div>
