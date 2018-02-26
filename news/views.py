@@ -5,9 +5,11 @@ from django.shortcuts import render,redirect
 from . models import Article,NewsLetterRecipients
 from .forms import NewsLetterForm
 from .email import send_welcome_email
+from django.contrib.auth.decorators import login_required
+
+
+
 #create  your views.
-# def welcome(request):
-#     return render(request,'welcome.html')
 def news_of_day(request):
     date = dt.date.today()
     news = Article.today_news()
@@ -62,7 +64,7 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'all_news/search.html',{"message":message})
 
-
+@login_required(login_url='/accounts/login')
 def article(request,article_id):
     try:
         article=Article.objects.get(id=article_id)
