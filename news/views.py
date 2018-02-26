@@ -3,14 +3,22 @@ import datetime as dt
 from django.http import HttpResponse,Http404
 from django.shortcuts import render,redirect
 from . models import Article 
+from .forms import NewsLetterForm
 #create  your views.
 # def welcome(request):
 #     return render(request,'welcome.html')
 def news_of_day(request):
     date = dt.date.today()
     news = Article.today_news()
+
+    if request.method =='POST':
+        form=NewsLetterForm(request.POST)
+        if form.is_valid():
+            print('valid')
+    else:
+        form=NewsLetterForm()
     # function to convert date object to find exact day
-    return render(request,'all_news/today_news.html',{"date":date,"news":news})
+    return render(request,'all_news/today_news.html',{"date":date,"news":news,"letterForm":form})
 
 
 
