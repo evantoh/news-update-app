@@ -40,6 +40,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'news',
+    'rest_framework.authtoken',
     'rest_framework',
     'bootstrap3',
     'tinymce',
@@ -94,6 +95,13 @@ DATABASES = {
         'PASSWORD':'evans123',
         
     }
+
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 DATABASES['default'].update(db_from_env)
